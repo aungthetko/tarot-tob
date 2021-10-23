@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <h3>Hello Admin</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">OrderID</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Address</th>
+                <th scope="col">Order At</th>
+                <th scope="col">Who's confirmed order ?</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${listOrder}">
+                <th scope="row"><p th:text="${order.id}"></p></th>
+                <th scope="row"><p th:text="${order.name}"></p></th>
+                <th scope="row"><p th:text="${order.phone}"></p></th>
+                <th scope="row"><p th:text="${order.address}"></p></th>
+                <th scope="row"><p th:text="${order.orderAt}"></p></th>
+                <th scope="row">Loading..........</th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
