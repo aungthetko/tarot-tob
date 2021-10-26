@@ -4,12 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="" >
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="" th:href="@{/cssandjs/style.css}">
+    <link rel="stylesheet" href="" th:href="@{/cssandjs/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 </head>
 <body>
     <div class="container">
         <h3>Hello Admin</h3>
-        <table class="table table-striped">
+        <table id="orderTable">
             <thead>
             <tr>
                 <th scope="col">OrderID</th>
@@ -17,7 +20,7 @@
                 <th scope="col">Phone</th>
                 <th scope="col">Address</th>
                 <th scope="col">Order At</th>
-                <th scope="col">Confirm</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -27,10 +30,26 @@
                 <th scope="row"><p th:text="${order.phone}"></p></th>
                 <th scope="row"><p th:text="${order.address}"></p></th>
                 <th scope="row"><p th:text="${order.orderAt}"></p></th>
-                <th scope="row"><a href="#" th:href="@{'/employee/confirm/' + ${order.id}}">Confirm</a>
+                <th scope="row"><a class="btn btn-primary text-white" href="#" th:href="@{'employee/confirm/' + ${order.id}}">Contact</a>
             </tr>
             </tbody>
         </table>
     </div>
+
+    <script th:src="@{/cssandjs/jquery.min.js}"></script>
+    <script th:src="@{/cssandjs/bootstrap.min.js}"></script>
+    <script th:src="@{cssandjs/popper.min.js}"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#orderTable").DataTable({
+                'aoColumnDefs': [{
+                    'bSortable': false,
+                    'aTargets': [-1] /* 1st one, start by the right */
+                }]
+            });
+        })
+    </script>
 </body>
 </html>

@@ -9,4 +9,14 @@ public interface OrderService {
     List<Order> findAllOrder();
 
     String confirmOrder(Long id);
+
+    List<Order> findOrderByPendingStatus();
+
+    List<Order> findOrderByApprovedStatus();
+
+    Order findOrderById(Long id);
+
+    Order saveOrder(Order order);
+
+    int getCountByPendingStatus();
 }

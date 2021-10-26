@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmed Page</title>
+    <link rel="stylesheet" href="" th:href="@{/cssandjs/style.css}">
+    <link rel="stylesheet" href="" th:href="@{/cssandjs/bootstrap.min.css}">
+</head>
+<body>
+    <h3>Order Details</h3>
+    
+    <div class="container">
+        <form th:action="@{/employee/update/{id}(id=${order.id})}" th:object="${order}" method="post">
+            <table border="0" cellpadding="10">
+                <tr>
+                    <td>Product ID:</td>
+                    <td>
+                        <input type="text" th:field="*{orderCode}" readonly/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Product Name:</td>
+                    <td>
+                        <input type="text" th:field="*{name}" readonly/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Brand:</td>
+                    <td><input type="text" th:field="*{phone}" readonly/></td>
+                </tr>
+                <tr>
+                    <td>Made In:</td>
+                    <td><input type="text" th:field="*{address}" readonly/></td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td>
+                        <select name="status" th:field="*{status}">
+                            <option th:each="statusOpt : ${T(com.tarot.tarotwebapp.enumeration.Status).values()}"
+                                    th:value="${statusOpt}" th:text="${statusOpt.status}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="submit">Save</button> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+<script th:src="@{/cssandjs/bootstrap.min.js}"></script>
+<script th:src="@{/cssandjs/jquery.min.js}"></script>
+<script th:src="@{/cssandjs/popper.min.js}"></script>
+<script th:src="@{/cssandjs/main.js}"></script>
+</html>

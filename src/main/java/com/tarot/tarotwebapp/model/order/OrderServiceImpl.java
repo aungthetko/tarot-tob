@@ -22,9 +22,22 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
+    public Order findOrderById(Long id) {
+        return orderRepo.findById(id).get();
+    }
+
+    @Override
+    public Order saveOrder(Order order) {
+        if(order.getStatus() == APPROVED){
+            order.setIsConfirmed(Boolean.TRUE);
+        }
+        return orderRepo.save(order);
+    }
+
+    @Override
     public Order placeOrder(Order order) {
-        Long id = Long.parseLong(generateId());
-        order.setId(id);
+        Long orderCode = Long.parseLong(generateId());
+        order.setOrderCode(orderCode);
         order.setOrderAt(LocalDateTime.now());
         order.setIsConfirmed(Boolean.FALSE);
         if (order.getIsConfirmed() == Boolean.FALSE){
@@ -45,6 +58,21 @@ public class OrderServiceImpl implements OrderService{
         order.setStatus(APPROVED);
         orderRepo.save(order);
         return "confirmed";
+    }
+
+    @Override
+    public int getCountByPendingStatus() {
+        return orderRepo.getCountByPendingStatus();
+    }
+
+    @Override
+    public List<Order> findOrderByPendingStatus() {
+        return orderRepo.findOrderByPendingStatus();
+    }
+
+    @Override
+    public List<Order> findOrderByApprovedStatus() {
+        return orderRepo.findOrderByApprovedStatus();
     }
 
     private String generateId(){

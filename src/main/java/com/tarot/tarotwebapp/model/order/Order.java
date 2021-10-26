@@ -16,11 +16,13 @@ import java.time.LocalDateTime;
 public class Order {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String email;
     private String phone;
     private LocalDateTime orderAt;
+    private Long orderCode;
     private Boolean isConfirmed;
     @Enumerated(EnumType.STRING)
     private Status status;
